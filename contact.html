@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Liên hệ — nxp</title>
+  <link rel="canonical" href="https://phuongpham599.github.io/kimcuong/contact.html">
+  <meta name="description" content="Thông tin liên hệ nxp (điện thoại, Zalo, Facebook).">
+  <meta property="og:title" content="Liên hệ — nxp">
+  <meta property="og:description" content="Thông tin liên hệ nxp (điện thoại, Zalo, Facebook).">
+  <meta property="og:url" content="https://phuongpham599.github.io/kimcuong/contact.html">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="/assets/site.css">
+  <script defer src="/assets/analytics.js"></script>
+  <script defer src="/assets/aff-engine.js"></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="/">nxp</a>
+      <nav class="nav">
+        <a href="/store.html">Cửa hàng</a>
+        <a href="/store/my-pham.html">Mỹ phẩm</a>
+        <a href="/store/thoi-trang.html">Thời trang</a>
+        <a href="/store/me-va-be.html">Mẹ & Bé</a>
+        <a href="/contact.html">Liên hệ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Liên hệ</h1>
+    <p>Điền thông tin trong <code>/assets/site.config.json</code> để bật các nút liên hệ & liên kết dưới đây.</p>
+    <ul id="contact-list" class="contact-list"></ul>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div>© 2025 nxp</div>
+      <div class="small">Website cá nhân chạy trên GitHub Pages.</div>
+    </div>
+  </footer>
+
+
+  <div class="floating-contacts">
+    <a id="btn-zalo"   class="float-btn" href="#" rel="nofollow noopener" title="Zalo">Zalo</a>
+    <a id="btn-call"   class="float-btn" href="#" rel="nofollow noopener" title="Gọi">Gọi</a>
+    <a id="btn-facebook" class="float-btn" href="#" rel="nofollow noopener" title="Facebook">FB</a>
+  </div>
+  <script>
+    (function() {
+      fetch('/assets/site.config.json').then(r=>r.json()).then(cfg=>{
+        const set = (id, href)=>{ const a=document.getElementById(id); if(!a) return; if(href) a.href=href; else a.style.display='none'; };
+        set('btn-call', cfg.tel ? ('tel:'+cfg.tel) : '');
+        set('btn-zalo', cfg.zalo ? ('https://zalo.me/'+cfg.zalo) : '');
+        set('btn-facebook', cfg.facebook || '');
+      }).catch(()=>{});
+    })();
+  </script>
+
+  <script>
+  (async function() {
+    const ul = document.getElementById('contact-list');
+    const cfg = await fetch('/assets/site.config.json').then(r=>r.json()).catch(()=>({}));
+    const items = [
+      cfg.tel ? ['Điện thoại', 'tel:'+cfg.tel] : null,
+      cfg.zalo ? ['Zalo', 'https://zalo.me/'+cfg.zalo] : null,
+      cfg.facebook ? ['Facebook', cfg.facebook] : null,
+      cfg.email ? ['Email', 'mailto:'+cfg.email] : null,
+    ].filter(Boolean);
+    if (!items.length) { ul.innerHTML = '<li>Chưa có thông tin — sẽ cập nhật sau.</li>'; return; }
+    ul.innerHTML = items.map(([k,v])=>`<li><a class="btn" href="${v}" target="_blank" rel="noopener nofollow">${k}</a></li>`).join('');
+  })();
+  </script>
+</body>
+</html>

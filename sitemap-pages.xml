@@ -1,0 +1,29 @@
+<!-- CREATE NEW FILE: /sitemap-pages.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://phuongpham599.github.io/kimcuong/</loc>
+    <lastmod>2025-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Hub tổng -->
+  <url>
+    <loc>https://phuongpham599.github.io/kimcuong/store.html</loc>
+    <lastmod>2025-11-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Trang liên hệ (nếu có file) -->
+  <url>
+    <loc>https://phuongpham599.github.io/kimcuong/lien-he.html</loc>
+    <lastmod>2025-11-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

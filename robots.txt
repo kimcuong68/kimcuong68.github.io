@@ -1,0 +1,5 @@
+# REPLACE WHOLE FILE: /robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://phuongpham599.github.io/kimcuong/sitemap.xml
