@@ -1,23 +1,13 @@
-// REPLACE WHOLE FILE: /assets/analytics.js
-(() => {
-  // FIND: GA_ID
-  const GA_ID = "G-6WLTPVXXG6"; // GA4 - tuyetlethi
-
-  // Ensure dataLayer + gtag
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ window.dataLayer.push(arguments); }
-  if (typeof window.gtag !== "function") window.gtag = gtag;
-
-  // Load GA script once
-  if (!document.querySelector(`script[data-ga4="${GA_ID}"]`)) {
-    const s = document.createElement("script");
-    s.async = true;
-    s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA_ID)}`;
-    s.setAttribute("data-ga4", GA_ID);
-    document.head.appendChild(s);
-  }
-
-  // Init + config
-  window.gtag("js", new Date());
-  window.gtag("config", GA_ID);
-})();
+<!-- /assets/analytics.js -->
+<script>
+/* GA4 loader — kimcuong68 (G-Y27PSH0DGP) */
+(function(w,d,s,id){
+  var f=d.getElementsByTagName(s)[0], j=d.createElement(s);
+  j.async=1; j.src='https://www.googletagmanager.com/gtag/js?id='+id;
+  f.parentNode.insertBefore(j,f);
+  w.dataLayer=w.dataLayer||[];
+  function gtag(){w.dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', id);
+})(window,document,'script','G-Y27PSH0DGP');
+</script>
