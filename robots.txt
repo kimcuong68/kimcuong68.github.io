@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://phuongpham599.github.io/kimcuong/sitemap.xml
+Sitemap: https://tuyetlethi83a.github.io/sitemap.xml
