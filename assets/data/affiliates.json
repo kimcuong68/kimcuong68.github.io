@@ -76,20 +76,6 @@
     "featured": true,
     "status": true,
     "updated_at": "2025-11-01T11:59:44.591Z",
-    "deeplink": "https://go.isclix.com/deep_link/6837055118319564314/4751584435713464237?url=https%3A%2F%2Fshopee.vn%2F-VOUCHER-100K-Nh%25E1%25BA%25ABn-b%25E1%25BA%25A1c-n%25E1%25BB%25AF-Miuu-Silver-nh%25E1%25BA%25ABn-n%25E1%25BB%25AF-tr%25C3%25A1i-tim-%25C4%2591%25C3%25ADnh-%25C4%2591%25C3%25A1-h%25E1%25BB%2593ng-Pinky-Ring-i.172288895.28977072588&sub1=nhan-bac-nu-miuu-silver-nhan-nu-trai-tim-dinh-da-hong-pinky-ring&sub2=shopee&sub3=tool&sub4=tuyetlethi"
-  },
-  {
-    "sku": "set-3-mon-bigsize-nu-ao-so-mi-soc-dai-tay-phoi-ao-thun-hai-day",
-    "name": "Set 3 món Bigsize nữ áo sơ mi sọc dài tay phối áo thun hai dây",
-    "merchant": "shopee",
-    "origin_url": "https://shopee.vn/Set-3-m%C3%B3n-Bigsize-n%E1%BB%AF-%C3%A1o-s%C6%A1-mi-s%E1%BB%8Dc-d%C3%A0i-tay-ph%E1%BB%91i-%C3%A1o-thun-hai-d%C3%A2y-co-gi%C3%A3n-k%C3%A8m-qu%E1%BA%A7n-%C4%91%C3%B9i-d%C3%A1ng-A-n%C4%83ng-%C4%91%E1%BB%99ng-c%C3%A1-t%C3%ADnh-i.409338962.28032531056",
-    "image": "/assets/img/products/set-3-mon-bigsize-nu-ao-so-mi-soc-dai-tay-phoi-ao-thun-hai-day.webp",
-    "price_vnd": 44000,
-    "category": "thoi-trang",
-    "brand": "",
-    "featured": false,
-    "status": true,
-    "updated_at": "2025-10-14T16:39:50.676Z"
   },
   {
     "sku": "smoothie-tay-te-bao-chet-body-dove-cham-da-sang-min-298g",
@@ -103,45 +89,6 @@
     "featured": true,
     "status": true,
     "updated_at": "2025-10-22T04:44:31.775Z"
-  },
-  {
-    "sku": "sports-shorts-6-quan-short-the-thao-nam",
-    "name": "Sports Shorts 6' Quần Short Thể Thao Nam",
-    "merchant": "shopee",
-    "origin_url": "https://shopee.vn/Wilson-Daily-Sports-Shorts-6%27-Qu%E1%BA%A7n-Short-Th%E1%BB%83-Thao-Nam-WM20036412-i.1362431986.42952098158?extraParams=%7B%22display_model_id%22%3A218531106646%7D",
-    "image": "/assets/img/products/sports-shorts-6-quan-short-the-thao-nam.webp",
-    "price_vnd": 1899000,
-    "category": "thoi-trang",
-    "brand": "",
-    "featured": true,
-    "status": true,
-    "updated_at": "2025-10-27T15:31:49.176Z"
-  },
-  {
-    "sku": "suc-cross-de-cao-3cm-nu-hinh-jd-3d",
-    "name": "Sục Cross Đế Cao 3cm Nữ Hình JD 3D",
-    "merchant": "shopee",
-    "origin_url": "https://shopee.vn/S%E1%BB%A5c-Cross-%C4%90%E1%BA%BF-Cao-3cm-N%E1%BB%AF-H%C3%ACnh-JD-3D-D%C3%A9p-S%E1%BB%A5c-T%C3%B4ng-D%C3%A1ng-3-M%C3%A0u-Size-36-41-B%C3%A1ch-H%C3%B3a-GiayDep.-Store-i.1071797056.23760425338?extraParams=%7B%22display_model_id%22%3A295148155729%2C%22model_selection_logic%22%3A3%7D&sp_atk=4cb25c80-7916-4292-a505-f7b757788434&xptdk=4cb25c80-7916-4292-a505-f7b757788434",
-    "image": "/assets/img/products/suc-cross-de-cao-3cm-nu-hinh-jd-3d.webp",
-    "price_vnd": 109000,
-    "category": "thoi-trang",
-    "brand": "",
-    "featured": false,
-    "status": true,
-    "updated_at": "2025-10-27T15:11:04.826Z"
-  },
-  {
-    "sku": "tui-canvas-dove-cao-cap",
-    "name": "Túi canvas dove cao cấp",
-    "merchant": "shopee",
-    "origin_url": "https://shopee.vn/-PC-gift-T%C3%BAi-canvas-dove-cao-c%E1%BA%A5p-i.111138057.40773519364",
-    "image": "/assets/img/products/tui-canvas-dove-cao-cap.webp",
-    "price_vnd": 150000,
-    "category": "thoi-trang",
-    "brand": "",
-    "featured": true,
-    "status": true,
-    "updated_at": "2025-10-22T15:37:50.466Z"
   },
   {
     "sku": "ao-croptop-ba-lo-nu-toptify",
