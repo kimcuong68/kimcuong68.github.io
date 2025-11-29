@@ -2,10 +2,11 @@
 (() => {
   // FIND: BASES / merchant inference / default subs
   const BASES = {
-    shopee: "https://go.isclix.com/deep_link/6837055118319564314/4751584435713464237",
-    tiktok: "https://go.isclix.com/deep_link/6837055118319564314/6648523843406889655",
-    lazada: "https://go.isclix.com/deep_link/6837055118319564314/5369219770778085421",
-  };
+  shopee: "https://go.isclix.com/deep_link/6840025033764211965/4751584435713464237",
+  tiktok: "https://go.isclix.com/deep_link/6840025033764211965/6648523843406889655",
+  lazada: "https://go.isclix.com/deep_link/6840025033764211965/5127144557053758578"
+};
+
 
   const MERCHANT_FROM_HOST = (h) => {
     if (!h) return "";
