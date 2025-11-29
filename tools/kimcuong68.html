@@ -1,11 +1,11 @@
-<!-- REPLACE WHOLE FILE: /tools/tuyetlethi-importer.html -->
-<!-- FIND: TUYETLETHI-TOOL v4.3.9-pro2 -->
+<!-- REPLACE WHOLE FILE: /tools/kimcuong-importer.html -->
+<!-- FIND: KIMCUONG-TOOL v4.3.9-pro2 -->
 <!doctype html>
 <html lang="vi">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Tuyetlethi Importer v4.3.9 — PRO + Batch + Featured + Debug</title>
+  <title>KimCuong68 Importer v4.3.9 — PRO + Batch + Featured + Debug</title>
   <meta name="robots" content="noindex,follow"/>
   <style>
     :root{
@@ -74,7 +74,7 @@
 <body>
 <div class="wrap">
   <div class="topbar">
-    <h1>Tuyetlethi Importer v4.3.9 <span class="pill">PRO</span> <span class="pill">Batch</span> <span class="pill">Featured</span> <span class="pill">Debug</span></h1>
+    <h1>KimCuong68 Importer v4.3.9 <span class="pill">PRO</span> <span class="pill">Batch</span> <span class="pill">Featured</span> <span class="pill">Debug</span></h1>
     <div class="row w-auto" style="gap:6px">
       <button id="btnMode" class="btn mode" type="button">Dark mode</button>
       <button id="btnClearFormQuick" class="btn mode" type="button">🧹 Xoá form</button>
@@ -85,8 +85,8 @@
   <div class="card">
     <h2>1) Cài đặt</h2>
     <div class="grid g2">
-      <div><label>Worker Base URL</label><input id="workerUrl" placeholder="https://tuyetlethi83a.mxd6686.workers.dev"/></div>
-      <div><label>X-Key (header bảo vệ Worker)</label><input id="xKey" placeholder="Ví dụ: tuyet-2025-super"/></div>
+      <div><label>Worker Base URL</label><input id="workerUrl" placeholder="https://kimcuong68.mxd6686.workers.dev"/></div>
+      <div><label>X-Key (header bảo vệ Worker)</label><input id="xKey" placeholder="Ví dụ: kimcuong-2025-super"/></div>
     </div>
     <div class="row" style="margin-top:8px">
       <button class="btn" id="btnSaveSettings">💾 Lưu</button>
@@ -162,7 +162,13 @@
         </div>
         <div class="row">
           <div><label>Giá (VND, không chấm)</label><input id="price" data-clear type="number" placeholder="399000"/></div>
-          <div><label>Merchant</label><select id="merchant"><option value="shopee">shopee</option><option value="lazada">lazada</option></select></div>
+          <div><label>Merchant</label>
+            <select id="merchant">
+              <option value="shopee">shopee</option>
+              <option value="lazada">lazada</option>
+              <option value="tiktok">tiktok</option>
+            </select>
+          </div>
         </div>
         <div><label>Link gốc (origin)</label><input id="origin" data-clear placeholder="https://shopee.vn/…"/></div>
         <div class="row">
@@ -263,18 +269,19 @@
 </div>
 
 <script>
-/* ===== TUYETLETHI-TOOL v4.3.9-pro2 ===== */
+/* ===== KIMCUONG-TOOL v4.3.9-pro2 ===== */
 document.addEventListener('DOMContentLoaded', () => {
   const $ = s => document.querySelector(s);
-  const LS_KEY = 'TUYETLETHI_IMPORTER_SETTINGS_V439PRO2';
+  const LS_KEY = 'KIMCUONG_IMPORTER_SETTINGS_V439PRO2';
   const slugify = s => s.toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
-  const DEFAULT_TPL_SHOPEE='https://go.isclix.com/deep_link/6837055118319564314/4751584435713464237?url={url}&sub1={sub1}&sub2={sub2}&sub3={sub3}&sub4={sub4}';
-  const DEFAULT_TPL_LAZADA='https://go.isclix.com/deep_link/6837055118319564314/5369219770778085421?url={url}&sub1={sub1}&sub2={sub2}&sub3={sub3}&sub4={sub4}';
+  const DEFAULT_TPL_SHOPEE='https://go.isclix.com/deep_link/6840025033764211965/4751584435713464237?url={url}&sub1={sub1}&sub2={sub2}&sub3={sub3}&sub4={sub4}';
+  const DEFAULT_TPL_LAZADA='https://go.isclix.com/deep_link/6840025033764211965/5127144557053758578?url={url}&sub1={sub1}&sub2={sub2}&sub3={sub3}&sub4={sub4}';
+  const DEFAULT_TPL_TIKTOK='https://go.isclix.com/deep_link/6840025033764211965/6648523843406889655?url={url}&sub1={sub1}&sub2={sub2}&sub3={sub3}&sub4={sub4}';
   const state = { imgBlob:null, imgName:null, imgW:0, imgH:0 };
 
   /* UI Helpers */
   function toast(msg,cls=''){ const t=$("#toast"); t.innerHTML=msg; t.className='toast show '+cls; setTimeout(()=>t.className='toast',4200); }
-  function log(msg){ const d=$("#debugLog"); d.textContent = (d.textContent && d.textContent!=='–' ? d.textContent + "\\n" : "") + msg; d.scrollTop = d.scrollHeight; }
+  function log(msg){ const d=$("#debugLog"); d.textContent = (d.textContent && d.textContent!=='–' ? d.textContent + "\n" : "") + msg; d.scrollTop = d.scrollHeight; }
   function updateToastOffset(){ const bar=document.querySelector('.sticky-actions'); const bottom=bar?(bar.offsetHeight+16):12; document.documentElement.style.setProperty('--toast-bottom', bottom+'px'); }
   updateToastOffset(); window.addEventListener('resize', updateToastOffset);
 
@@ -312,11 +319,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* Category + deep-link helpers */
   const vn = s => (s||'').toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase();
-  function normCategory(raw){ const base = vn(raw).replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'').replace(/-+/g,'-').replace(/^-|-$/g,''); if (/^(thoi-trang|ao|quan|vay|hoodie|giay|dep)$/.test(base)) return 'thoi-trang'; if (/^(my-pham|serum|kem|mask|srm|toner|chong-nang)$/.test(base)) return 'my-pham'; if (/^(me-va-be|ta|bim|sua|binh-sua)$/.test(base)) return 'me-va-be'; if (/^(trang-suc|nhan|vong|day-chuyen|lac|khuyen-tai)$/.test(base)) return 'trang-suc'; return base||'thoi-trang'; }
-  function computeSubs(sku, merchant){ return { sub1: sku||'sku', sub2:(merchant||'merchant').toLowerCase(), sub3:'tool', sub4:'tuyetlethi' }; }
+  function normCategory(raw){
+    const base = vn(raw).replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'').replace(/-+/g,'-').replace(/^-|-$/g,'');
+    if (/^(thoi-trang|ao|quan|vay|hoodie|giay|dep)$/.test(base)) return 'thoi-trang';
+    if (/^(my-pham|serum|kem|mask|srm|toner|chong-nang)$/.test(base)) return 'my-pham';
+    if (/^(me-va-be|ta|bim|sua|binh-sua)$/.test(base)) return 'me-va-be';
+    if (/^(trang-suc|nhan|vong|day-chuyen|lac|khuyen-tai)$/.test(base)) return 'trang-suc';
+    return base||'thoi-trang';
+  }
+  function computeSubs(sku, merchant){
+    const catEl = $("#category");
+    const catRaw = catEl ? catEl.value : '';
+    const catNorm = normCategory(catRaw||'');
+    return {
+      sub1: 'kimcuong68',
+      sub2: catNorm || (merchant||'merchant').toLowerCase(),
+      sub3: sku || 'sku',
+      sub4: 'oneatweb'
+    };
+  }
   function ensureSubsInUrl(u, subs){ const has = k => new RegExp(`[?&]${k}=`,`i`).test(u); const qs=[]; for(const k of ['sub1','sub2','sub3','sub4']) if(!has(k)) qs.push(`${k}=${encodeURIComponent(subs[k])}`); return qs.length?(u+(u.includes('?')?'&':'?')+qs.join('&')):u; }
   function cleanUrl(u){ return (u||'').trim().replace(/^["']+|["',]+$/g,''); }
-  function activeTplFor(merchant){ const s=readSettings(); return merchant==='shopee' ? (s.tplShopee||DEFAULT_TPL_SHOPEE) : (s.tplLazada||DEFAULT_TPL_LAZADA); }
+  function activeTplFor(merchant){
+    const s=readSettings();
+    if(merchant==='shopee') return s.tplShopee||DEFAULT_TPL_SHOPEE;
+    if(merchant==='lazada') return s.tplLazada||DEFAULT_TPL_LAZADA;
+    if(merchant==='tiktok') return DEFAULT_TPL_TIKTOK;
+    return s.tplShopee||DEFAULT_TPL_SHOPEE;
+  }
   function validateDeeplink(){ const dl=$("#deeplink").value.trim(); const badge=$("#dlCheck"); if(!dl){ badge.textContent="chưa có deeplink"; badge.className='badge'; return; } const okHost=/(^https?:\/\/)?([^/]*\.)?isclix\.com/i.test(dl); const hasUrl=/[?&]url=/.test(dl); const s1=/[?&]sub1=/.test(dl), s2=/[?&]sub2=/.test(dl), s3=/[?&]sub3=/.test(dl), s4=/[?&]sub4=/.test(dl); if(okHost && hasUrl && s1 && s2 && s3 && s4){ badge.textContent="OK affiliate"; badge.className='badge'; return; } if(okHost && !hasUrl){ badge.textContent="isclix thiếu url="; badge.className='badge'; return; } if(okHost){ const missing=['sub1','sub2','sub3','sub4'].filter(k=>!new RegExp(`[?&]${k}=`).test(dl)); badge.textContent="thiếu: "+missing.join(', '); badge.className='badge'; return; } badge.textContent="KHÔNG qua affiliate"; badge.className='badge'; }
   function makeDeeplink(){ const origin=cleanUrl($("#origin").value.trim()); const sku=$("#sku").value.trim(); const merchant=$("#merchant").value; if(!origin){ toast("Thiếu Origin.","warn"); return; } const tpl=activeTplFor(merchant); const subs=computeSubs(sku,merchant); let link=tpl.replace(/\{url\}/g,encodeURIComponent(origin)).replace(/\{sku\}/g,sku||'sku').replace(/\{sub1\}/g,subs.sub1).replace(/\{sub2\}/g,subs.sub2).replace(/\{sub3\}/g,subs.sub3).replace(/\{sub4\}/g,subs.sub4); link=ensureSubsInUrl(link,subs); $("#deeplink").value=link; validateDeeplink(); }
   $("#btnMakeDeeplink").onclick=makeDeeplink; $("#deeplink").addEventListener('input', validateDeeplink);
@@ -331,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function getSelectedFmt(){ return ($("#defaultFmt").value||'webp').toLowerCase(); }
   function extByFmt(fmt){ return fmt==='png'?'.png':'.webp'; }
   function updateSingleUploadCta(){ const folder=getSelectedFolder(); const fmt=getSelectedFmt(); const sku=($("#sku").value.trim()||'<sku>'); $("#btnUploadImg").textContent=`Upload ảnh → ${folder}${slugify(sku)}${extByFmt(fmt)}`; }
-  function runDiag(){ const sku=$("#sku").value.trim(); const img=$("#image").value.trim(); const origin=cleanUrl($("#origin").value.trim()); const merchant=$("#merchant").value; const expectedFolder=getSelectedFolder(); const fmt=getSelectedFmt(); const msgs=[]; if(!sku) msgs.push("• Thiếu SKU (bắt buộc cho publish)."); if(img && !img.startsWith(`${expectedFolder}${sku||'...'}`)) msgs.push("• Ảnh nên là "+expectedFolder+(sku||'<sku>')+extByFmt(fmt)); if(origin && !/shopee\.vn|lazada\.vn/i.test(origin)) msgs.push("• Origin không phải Shopee/Lazada."); msgs.push("• Merchant: "+merchant); $("#diag").innerHTML=msgs.length?msgs.map(x=>`<div>${x}</div>`).join(""):'<span class="ok">Tạm ổn.</span>'; $("#originOut").value=origin; }
+  function runDiag(){ const sku=$("#sku").value.trim(); const img=$("#image").value.trim(); const origin=cleanUrl($("#origin").value.trim()); const merchant=$("#merchant").value; const expectedFolder=getSelectedFolder(); const fmt=getSelectedFmt(); const msgs=[]; if(!sku) msgs.push("• Thiếu SKU (bắt buộc cho publish)."); if(img && !img.startsWith(`${expectedFolder}${sku||'...'}`)) msgs.push("• Ảnh nên là "+expectedFolder+(sku||'<sku>')+extByFmt(fmt)); if(origin && !/shopee\.vn|lazada\.vn|tiktok\.com/i.test(origin)) msgs.push("• Origin không phải Shopee/Lazada/TikTok."); msgs.push("• Merchant: "+merchant); $("#diag").innerHTML=msgs.length?msgs.map(x=>`<div>${x}</div>`).join(""):'<span class="ok">Tạm ổn.</span>'; $("#originOut").value=origin; }
   $("#btnAuto").onclick=()=>{ const name=$("#name").value.trim(); const skuNow=$("#sku").value.trim(); if(name && !skuNow) $("#sku").value=slugify(name); const folder=getSelectedFolder(); const baseSku=$("#sku").value.trim()||'...'; const fmt=getSelectedFmt(); if($("#sku").value && !$("#image").value) $("#image").value=`${folder}${slugify(baseSku)}${extByFmt(fmt)}`; const g=autoCategory(`${name} ${$("#brand").value} ${$("#origin").value}`); if(g && !$("#category").value.trim()) $("#category").value=g; runDiag(); updateSingleUploadCta(); };
   ["name","sku","origin","image","merchant"].forEach(id=>$("#"+id).addEventListener('input', ()=>{ runDiag(); if(id==='sku') updateSingleUploadCta(); }));
   $("#defaultFolder").addEventListener('change', ()=>{ ensureFolderBase(); updateSingleUploadCta(); saveSettings(); });
@@ -366,7 +396,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function splitDataUrl(d){ const m = String(d||'').match(/^data:([^;]+);base64,(.+)$/); return m ? { mime:m[1], base64:m[2] } : { mime:'', base64:d||'' }; }
   async function transcodeBlob(blob, fmt, w, h){ const url=URL.createObjectURL(blob); const img=new Image(); await new Promise(r=>{ img.onload=r; img.src=url; }); const c=document.createElement('canvas'); c.width=w; c.height=h; c.getContext('2d').drawImage(img,0,0,w,h); const mime = fmt==='png' ? 'image/png' : 'image/webp'; const quality = fmt==='png' ? 1.0 : 0.82; return await new Promise(res=>c.toBlob(res, mime, quality)); }
 
-  async function uploadItem(it, statusEl){ let path=pathFor(it); try{ if(!it.outBlob){ statusEl.textContent='Đang xử lý'; await queueProcess(it); } const b=baseUrl(); if(!b){ toast("Chưa cấu hình Worker.","warn"); return; } const dataUrl=await blobToDataURL(it.outBlob); statusEl.textContent='Uploading…'; let r=await fetch(b+"/upload-image",{method:"POST",mode:"cors",headers:hdr(),body:JSON.stringify({ sku:it.name, path, file:dataUrl })}); let text=await r.text().catch(()=>'' ); if(!r.ok){ log(`[upload ${path}] FAIL ${r.status}. Thử base64 thuần… — ${text.slice(0,140)}`); const {mime, base64} = splitDataUrl(dataUrl); r=await fetch(b+"/upload-image",{method:"POST",mode:"cors",headers:hdr(),body:JSON.stringify({ sku:it.name, path, file:base64, mime })}); text=await r.text().catch(()=>'' ); } if(!r.ok && it.fmt!=='webp'){ log(`[upload ${path}] FAIL nữa. Fallback WebP…`); const webpBlob=await transcodeBlob(it.outBlob, 'webp', it.w||1200, it.h||1200); const newDataUrl=await blobToDataURL(webpBlob); const newPath=path.replace(/\.png$/i,'.webp'); r=await fetch(b+"/upload-image",{method:"POST",mode:"cors",headers:hdr(),body:JSON.stringify({ sku:it.name, path:newPath, file:newDataUrl })}); text=await r.text().catch(()=>'' ); if(r.ok){ it.fmt='webp'; it.outBlob=webpBlob; path=newPath; } } if(!r.ok){ statusEl.textContent='Lỗi upload'; log(`[upload ${path}] FAIL cuối ${r.status}: ${text.slice(0,200)}`); toast("Upload lỗi "+r.status,"err"); return; } statusEl.textContent='Đã upload'; it.status='uploaded'; log(`[upload ${path}] OK`); const sku=$("#sku").value.trim(); if(sku && it.name===slugify(sku)) $("#image").value=path; }catch(e){ statusEl.textContent='Lỗi upload'; log(`[upload ${path}] EXC: ${e.message}`); toast("Upload lỗi: "+e.message,"err"); } }
+  async function uploadItem(it, statusEl){ let path=pathFor(it); try{ if(!it.outBlob){ statusEl.textContent='Đang xử lý'; await queueProcess(it); } const b=baseUrl(); if(!b){ toast("Chưa cấu hình Worker.","warn"); return; } const dataUrl=await blobToDataURL(it.outBlob); statusEl.textContent='Uploading…'; let r=await fetch(b+"/upload-image",{method:"POST",mode:"cors",headers:hdr(),body:JSON.stringify({ sku:it.name, path, file:dataUrl })}); let text=await r.text().catch(()=>'' ); if(!r.ok){ log(`[upload ${path}] FAIL ${r.status}. Thử base64 thuần… — ${text.slice(0,140)}`); const {mime, base64} = splitDataUrl(dataUrl); r=await fetch(b+"/upload-image",{method:"POST",mode:"cors",headers:hdr(),body:JSON.stringify({ sku:it.name, path, file:base64, mime })}); text=await r.text().catch(()=>'' ); } if(!r.ok && it.fmt!=='webp'){ log(`[upload ${path}] FAIL nữa. Fallback WebP…`); const webpBlob=await transcodeBlob(it.outBlob, 'webp', it.w||1200, it.h||1200); const newDataUrl=await blobToDataURL(webpBlob); const newPath=path.replace(/\.png$/i,'.webp'); r=await fetch(b+"/upload-image",{method:"POST",mode:"cors",headers:hdr(),body:JSON.stringify({ sku:it.name, path:newPath, file:newDataUrl })}); text=await r.text().catch(()=>'' ); if(r.ok){ it.fmt='webp'; it.outBlob=webpBlob; path=newPath; } } if(!r.ok){ statusEl.textContent='Lỗi upload'; log(`[upload ${path}] FAIL cuối ${r.status}: ${text.slice(0,200)}`); toast("Upload lỗi "+r.status,"err"); return; } statusEl.textContent='Đã upload'; it.status='uploaded'; log(`[upload ${path}] OK`); const sku=$("#sku").value.trim(); if(sku && it.name===slugify(sku)) $("#image").value=path; }catch(e){ statusEl.textContent='Lỗi upload'; log(`[upload ${path}] EXC: ${e.message}`); toast("Upload lỗi: "+e.message,"err"); }
+
+  }
 
   $("#btnClearQueue").onclick=()=>{ queue.length=0; renderQueue(); toast('Đã xoá hàng đợi.'); };
   $("#btnConvertAll").onclick=async()=>{ for(const it of queue){ await queueProcess(it); } toast("Đã convert tất cả.","ok"); renderQueue(); };
