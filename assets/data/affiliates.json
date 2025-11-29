@@ -104,20 +104,7 @@
     "updated_at": "2025-11-29T12:55:54.312Z",
     "deeplink": "https://go.isclix.com/deep_link/6840025033764211965/4751584435713464237?url=shopee.vn%2F%C3%81o-Sweater-Novita-N%E1%BB%89-L%C3%B3t-L%C3%B4ng-Cotton-100-Unisex-Local-Brand-i.1348480201.29410118078%3FextraParams%3D%257B%22display_model_id%22%253A139154355650%252C%22model_selection_logic%22%253A3%257D&sub1=kimcuong68&sub2=thoi-trang&sub3=ao-sweater-novita-ni-lot-long-cotton-100-unisex-local-brand&sub4=oneatweb"
   },
-  {
-    "sku": "ao-thun-nelly-cotton-260gsm",
-    "name": "Áo thun NELLY Cotton 260gsm",
-    "merchant": "shopee",
-    "origin_url": "https://shopee.vn/%C3%81o-thun-NELLY-Cotton-260gsm-Premium-Loes-Yonk-Esof-Tay-L%E1%BB%A1-Form-R%E1%BB%99ng-Nam-N%E1%BB%AF-i.301785019.18384121432?sp_atk=8d3b53e0-7882-452c-aa9d-2b12d9be9356&xptdk=8d3b53e0-7882-452c-aa9d-2b12d9be9356",
-    "image": "/assets/img/products/ao-thun-nelly-cotton-260gsm.webp",
-    "price_vnd": 210000,
-    "category": "thoi-trang",
-    "brand": "",
-    "featured": true,
-    "status": true,
-    "updated_at": "2025-10-21T14:40:00.941Z"
-  },
-  {
+   {
     "sku": "ao-thun-nu-co-tron-fa1-0044-14",
     "name": "Áo thun nữ cổ tròn FA1-0044-14",
     "merchant": "shopee",
@@ -142,19 +129,6 @@
     "featured": false,
     "status": true,
     "updated_at": "2025-10-14T16:23:36.898Z"
-  },
-  {
-    "sku": "binh-giu-nhiet-hukan-hk-bgn504bd",
-    "name": "Bình giữ nhiệt HUKAN HK-BGN504BD",
-    "merchant": "shopee",
-    "origin_url": "https://shopee.vn/B%C3%ACnh-gi%E1%BB%AF-nhi%E1%BB%87t-HUKAN-HK-BGN504BD-Dung-t%C3%ADch-500ml-Gi%E1%BB%AF-nhi%E1%BB%87t-n%C3%B3ng-l%E1%BA%A1nh-C%C3%B3-hi%E1%BB%83n-th%E1%BB%8B-nhi%E1%BB%87t-%C4%91%E1%BB%99-i.319001815.43170676207",
-    "image": "/assets/img/products/binh-giu-nhiet-hukan-hk-bgn504bd.webp",
-    "price_vnd": 50000,
-    "category": "thoi-trang",
-    "brand": "",
-    "featured": false,
-    "status": true,
-    "updated_at": "2025-10-01T08:24:12.311Z"
   },
   {
     "sku": "bo-10-phu-kien-da-nang-hukan-g1-bpk10c",
